@@ -26,7 +26,7 @@ public class MainTest
 	@Test
 	public void test_scenario_1 () {
 		Lab4_Test test = new Lab4_Test();
-		test.run(user, fileName2);
+		test.run(user, fileName1);
 	}
 	
 	@Test

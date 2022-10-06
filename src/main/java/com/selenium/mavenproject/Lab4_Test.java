@@ -14,6 +14,10 @@ import io.github.bonigarcia.wdm.WebDriverManager;
 
 public class Lab4_Test {
 	
+	static int count = 0; 	//how many times the test was run
+							//if you run the test with the same user, billing address is already saved
+							//checking it with count to 
+	
 	void run(User user, String fileName) {
 		WebDriverManager.chromedriver().setup();
 		ChromeDriver driver = new ChromeDriver();
@@ -61,12 +65,15 @@ public class Lab4_Test {
 		driver.findElement(By.xpath("//input[@id = \"termsofservice\"]")).click();
 		driver.findElement(By.xpath("//button[@id = \"checkout\"]")).click();
 		
-		driver.findElement(By.xpath("//input[@id = \"BillingNewAddress_City\"]")).sendKeys("Test");
-		driver.findElement(By.xpath("//input[@id = \"BillingNewAddress_Address1\"]")).sendKeys("Test");
-		driver.findElement(By.xpath("//input[@id = \"BillingNewAddress_ZipPostalCode\"]")).sendKeys("12345");
-		driver.findElement(By.xpath("//input[@id = \"BillingNewAddress_PhoneNumber\"]")).sendKeys("123456789");
-		driver.findElement(By.xpath("//select[@id = \"BillingNewAddress_CountryId\"]")).click();
-		driver.findElement(By.xpath("//option[@value = \"1\"]")).click();
+		if(count == 0) {
+			++count;
+			driver.findElement(By.xpath("//input[@id = \"BillingNewAddress_City\"]")).sendKeys("Test");
+			driver.findElement(By.xpath("//input[@id = \"BillingNewAddress_Address1\"]")).sendKeys("Test");
+			driver.findElement(By.xpath("//input[@id = \"BillingNewAddress_ZipPostalCode\"]")).sendKeys("12345");
+			driver.findElement(By.xpath("//input[@id = \"BillingNewAddress_PhoneNumber\"]")).sendKeys("123456789");
+			driver.findElement(By.xpath("//select[@id = \"BillingNewAddress_CountryId\"]")).click();
+			driver.findElement(By.xpath("//option[@value = \"1\"]")).click();
+		}
 		driver.findElement(By.xpath("//input[@title = \"Continue\"]")).click();
 		
 //		WebElement ele = driver.findElement(By.xpath("//input[contains(@class, \"payment-method-next\")]"));
