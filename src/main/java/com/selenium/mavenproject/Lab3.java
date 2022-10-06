@@ -38,6 +38,8 @@ public class Lab3 {
 //    	wait.until(ExpectedConditions.elementToBeClickable(By.xpath("/descendant::div/h5[text() = \"Widgets\"]"))).click();
     	//wait.pollingEvery(Duration.ofSeconds(5));
     	//wait.ignoring(NoSuchElementException.class);
+    	
+    	//fluentWait
 //    	Function<WebDriver,Boolean> function = new Function<WebDriver,Boolean>(){
 //    		public Boolean apply(WebDriver arg0) {
 //    			WebElement element = arg0.findElement(By.xpath(""));
@@ -50,17 +52,20 @@ public class Lab3 {
     	//driver.findElement(By.xpath("/descendant::div/h5[text() = \"Widgets\"]")).click();
     	
     	JavascriptExecutor js = (JavascriptExecutor) driver;
-    	js.executeScript("window.scrollBy(0,document.body.scrollHeight)", "");
+    	//js.executeScript("window.scrollBy(0,document.body.scrollHeight)", "");
     	
+    	WebElement ele = driver.findElement(By.xpath("/descendant::div[contains(@class, \"card mt\")][4]"));
+    	js.executeScript("arguments[0].scrollIntoView(true);", ele);
     	driver.findElement(By.xpath("/descendant::div[contains(@class, \"card mt\")][4]")).click();
-    	///descendant::div[@class = "card mt-4 top-card"][4]
-    	///descendant::div[contains(@class, "card mt")][4]/child::*
-    	///descendant::div[contains(@class, \"card mt\")][4]
     	
     	
-    	js.executeScript("window.scrollBy(0,document.body.scrollHeight)", "");
+//    	js.executeScript("window.scrollBy(0,document.body.scrollHeight)", "");
+    	
+    	ele = driver.findElement(By.xpath("/descendant::span[text() = \"Progress Bar\"]"));
+    	js.executeScript("arguments[0].scrollIntoView(true);", ele);    	
     	
     	driver.findElement(By.xpath("/descendant::span[text() = \"Progress Bar\"]")).click();
+    	
     	
     	driver.findElement(By.xpath("/descendant::button[text() = \"Start\"]")).click();
 
